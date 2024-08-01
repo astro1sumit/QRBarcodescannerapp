@@ -1,0 +1,16 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AndroidLintUnsupportedChromeOsCameraSystemFeature" enabled="true" level="WARNING" enabled_by_default="true">
+      <scope name="Open Files" level="WARNING" enabled="true" />
+      <scope name="Production" level="WARNING" enabled="true" />
+      <scope name="Project Files" level="WARNING" enabled="true" />
+      <scope name="Project Non-Source Files" level="WARNING" enabled="true" />
+      <scope name="Project Source Files" level="WARNING" enabled="true" />
+      <scope name="Scratches and Consoles" level="WARNING" enabled="true" />
+      <scope name="Tests" level="WARNING" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="KotlinConstantConditions" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UnusedEquals" enabled="false" level="WARNING" enabled_by_default="false" />
+  </profile>
+</component>
