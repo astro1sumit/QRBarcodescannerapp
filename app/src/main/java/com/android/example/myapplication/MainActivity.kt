@@ -18,11 +18,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
@@ -69,19 +71,19 @@ class MainActivity : AppCompatActivity() {
         resultTv = findViewById(R.id.resultTv)
         scanBtn = findViewById(R.id.scanBtn)
         Datatv = findViewById(R.id.DataTv)
-        finddataBtn = findViewById(R.id.camerBtn)
+        finddataBtn = findViewById(R.id.finddataBtn)
 
-        database = FirebaseDatabase.getInstance().getReference()
+        database = Firebase.database.reference
 
         cameraPermission = arrayOf(
             android.Manifest.permission.CAMERA,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
+
         storagePerssion = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
 
-        barcodeScannerOptions =
-            BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS).build()
+        barcodeScannerOptions = BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS).build()
 
         barcodeScanner = BarcodeScanning.getClient(barcodeScannerOptions!!)
 
@@ -96,11 +98,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         galleryBtn.setOnClickListener {
-            if (checkStoragePermission()) {
-                pickImageGallery()
-            } else {
-                requestStoragePermission()
-            }
+
+            pickImageGallery()
 
         }
 
@@ -116,25 +115,38 @@ class MainActivity : AppCompatActivity() {
             if (imageUri == null){
                 showToast("Pick image first")
             } else {
-                detectDataFromRawValue()
+                Toast.makeText(baseContext,"ejf",Toast.LENGTH_LONG).show()
+//                detectDataFromRawValue()
+
+                database.child("sumit").setValue("hello").addOnSuccessListener {
+                    Toast.makeText(this,"jfdh",Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
 
     private fun detectDataFromRawValue() {
-        database.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val rawValue = snapshot.getValue(String::class.java)
-                rawValue?.let {
-                    Log.d("Firebase", "Raw Value: $it")
-                    Datatv.text = "Raw Value: $it"
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.e("Firebase", "Error reading raw value", databaseError.toException())
-            }
-        })
+        database.child("sumit").setValue(mapOf(
+            1 to "1",
+            2 to "2",
+            3 to "3",
+            4 to "4",
+            5 to "5"
+        ))
+        Toast.makeText(baseContext,"hello",Toast.LENGTH_SHORT).show()
+//        database.addValueEventListener(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                val rawValue = snapshot.getValue(String::class.java)
+//                rawValue?.let {
+//                    Log.d("Firebase", "Raw Value: $it")
+//                    Datatv.text = "Raw Value: $it"
+//                }
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                Log.e("Firebase", "Error reading raw value", databaseError.toException())
+//            }
+//        })
     }
 
     private fun detectResultFromImage() {
