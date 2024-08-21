@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -116,37 +117,31 @@ class MainActivity : AppCompatActivity() {
                 showToast("Pick image first")
             } else {
                 Toast.makeText(baseContext,"ejf",Toast.LENGTH_LONG).show()
-//                detectDataFromRawValue()
+                detectDataFromRawValue()
 
-                database.child("sumit").setValue("hello").addOnSuccessListener {
-                    Toast.makeText(this,"jfdh",Toast.LENGTH_LONG).show()
-                }
+
             }
         }
     }
 
     private fun detectDataFromRawValue() {
         database.child("sumit").setValue(mapOf(
-            1 to "1",
-            2 to "2",
-            3 to "3",
-            4 to "4",
-            5 to "5"
+            "1" to "1"
         ))
         Toast.makeText(baseContext,"hello",Toast.LENGTH_SHORT).show()
-//        database.addValueEventListener(object : ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                val rawValue = snapshot.getValue(String::class.java)
-//                rawValue?.let {
-//                    Log.d("Firebase", "Raw Value: $it")
-//                    Datatv.text = "Raw Value: $it"
-//                }
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                Log.e("Firebase", "Error reading raw value", databaseError.toException())
-//            }
-//        })
+        database.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val rawValue = snapshot.value
+                rawValue?.let {
+                    Log.d("Firebase", "Raw Value: $it")
+                    Datatv.text = "Raw Value: ${it.toString()}"
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.e("Firebase", "Error reading raw value", databaseError.toException())
+            }
+        })
     }
 
     private fun detectResultFromImage() {

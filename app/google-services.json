@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "30935053916",
-    "project_id": "barcode-scanner-7e4b1",
-    "storage_bucket": "barcode-scanner-7e4b1.appspot.com"
+    "project_number": "887415299375",
+    "firebase_url": "https://my-application-2d801-default-rtdb.firebaseio.com",
+    "project_id": "my-application-2d801",
+    "storage_bucket": "my-application-2d801.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:30935053916:android:43c8cb413b9075eefad899",
+        "mobilesdk_app_id": "1:887415299375:android:86265538081ea8a9ce55da",
         "android_client_info": {
           "package_name": "com.android.example.myapplication"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDqzXxdZDYYXcMqNhGIIcvFuIW0N1aCVHM"
+          "current_key": "AIzaSyAo79jSTyXb6Sw8YNP7_lUSla8xaij7Kwc"
         }
       ],
       "services": {
